@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#0F1923" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CML Virtual" />
+  <meta name="description" content="Gestión operativa de reventa de saldo virtual PINWEB" />
+
+  <title>CML Virtual</title>
+
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+  <!-- Sistema de diseño -->
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/sheets.css" />
+
+  <!-- Tipografía (Google Fonts con fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" />
+  </noscript>
+</head>
+
+<body>
+
+  <!-- ── SPLASH ──────────────────────────────────────────── -->
+  <div id="splash" style="
+    position:fixed;inset:0;
+    background:#0F1923;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    gap:24px;
+    z-index:9999;
+  ">
+    <div style="
+      width:80px;height:80px;
+      background:#1A2636;
+      border-radius:20px;
+      border:2px solid #2E3F55;
+      display:flex;align-items:center;justify-content:center;
+      font-size:36px;
+    ">▣</div>
+    <div style="text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#F1F5F9;letter-spacing:.02em">CML Virtual</div>
+      <div style="font-size:13px;color:#94A3B8;margin-top:4px">Cargando datos...</div>
+    </div>
+    <div style="
+      width:200px;height:6px;
+      background:#1A2636;border-radius:99px;overflow:hidden
+    ">
+      <div id="splash-bar" style="
+        height:100%;background:#3B82F6;border-radius:99px;
+        animation:splash-fill 1.2s ease-out forwards
+      "></div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes splash-fill {
+      from { width: 0% }
+      to   { width: 100% }
+    }
+  </style>
+
+  <!-- ── APP ─────────────────────────────────────────────── -->
+  <div id="app">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="header-left">
+        <button class="btn-back" id="header-back" style="display:none" aria-label="Volver">
+          ←
+        </button>
+      </div>
+
+      <div class="header-title" id="header-title">CML Virtual</div>
+
+      <div class="header-right">
+        <span id="header-date" style="font-size:13px;color:#94A3B8;font-weight:500"></span>
+        <button class="btn-menu" id="header-menu" style="display:none" aria-label="Menú">
+          ⋮
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="app-main">
+      <div id="main-content" style="position:absolute;inset:0;overflow:hidden">
+        <!-- Las vistas se inyectan aquí por el router -->
+      </div>
+    </main>
+
+    <!-- TAB BAR -->
+    <nav class="tab-bar" role="tablist">
+      <button class="tab-item active" data-tab="today" role="tab" aria-label="Hoy">
+        <span class="tab-icon">📋</span>
+        <span class="tab-label">HOY</span>
+      </button>
+      <button class="tab-item" data-tab="clients" role="tab" aria-label="Clientes">
+        <span class="tab-icon" id="tab-icon-clients">👥</span>
+        <span class="tab-label">CLIENTES</span>
+      </button>
+      <button class="tab-item" data-tab="balance" role="tab" aria-label="Balance">
+        <span class="tab-icon">📊</span>
+        <span class="tab-label">BAL</span>
+      </button>
+      <button class="tab-item" data-tab="more" role="tab" aria-label="Más">
+        <span class="tab-icon" id="tab-icon-more" style="position:relative">
+          ⚙
+          <!-- Badge de préstamos pendientes (se inyecta dinámicamente) -->
+        </span>
+        <span class="tab-label">MÁS</span>
+      </button>
+    </nav>
+
+  </div><!-- /#app -->
+
+  <!-- ── BOOTSTRAP ────────────────────────────────────────── -->
+  <script type="module" src="/js/app.js"></script>
+
+</body>
+</html>
